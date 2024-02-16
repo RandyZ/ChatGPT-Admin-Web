@@ -12,7 +12,6 @@ COPY package.json pnpm-lock.yaml* ./
 RUN yarn global add pnpm && pnpm i --frozen-lockfile
 
 FROM base AS builder
-FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .

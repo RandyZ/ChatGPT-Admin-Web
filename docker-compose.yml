@@ -1,0 +1,29 @@
+# 非 host 版本, 不使用本机代理
+# (不懂 Docker 的，只需要关心 OPENAI_BASE_URL 和 CHAT_API_KEY 即可！)
+version: '3.3'
+services:
+  pg:
+    image: ankane/pgvector:v0.5.0
+    container_name: gpt-pg
+    ports: # 生产环境建议不要暴露
+      - 5432:5432
+    networks:
+      - gptadmin
+    environment:
+      # 这里的配置只有首次运行生效。修改后，重启镜像是不会生效的。需要把持久化数据删除再重启，才有效果
+      - POSTGRES_USER=randy
+      - POSTGRES_PASSWORD=randy123
+      - POSTGRES_DB=chat_gpt_admin
+    volumes:
+      - ./data/pg/data:/var/lib/postgresql/data
+  redis:
+    image: redis:7.2.3
+    container_name: gpt-redis
+    ports: # 生产环境建议不要暴露
+      - 6379:6379
+    networks:
+      - gptadmin
+    volumes:
+      - ./data/redis/data:/data
+networks:
+  gptadmin:

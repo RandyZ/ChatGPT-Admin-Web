@@ -1,0 +1,56 @@
+{
+  "postgres": {
+    "url": "postgres://randy:randy123@localhost:5432/postgres"
+  },
+  "redis": {
+    "url": "redis://localhost:6379/0"
+  },
+  "backend": {
+    "port": 3001
+  },
+  "jwt": {
+    "algorithm": "HS256"
+  },
+  "openai": {
+    "baseUrl": "https://api.openai.com/v1",
+    "keys": [
+      "fff"
+    ]
+  },
+  "email": {
+    "use": "resend",
+    "domain": "example.com",
+    "resend": {
+      "apiKey": "fff"
+    }
+  },
+  "sms": {
+    "use": "uni",
+    "uni": {
+      "signature": "XX科技",
+      "apiKey": "ffffff"
+    }
+  },
+  "payment": {
+    "use": "xunhu",
+    "xunhu": {
+      "wapName": "XX科技",
+      "appId": "ffffff",
+      "appSecret": "ffffff",
+      "notifyUrl": "https://example.com",
+      "returnUrl": "https://example.com"
+    }
+  },
+  "brand": {
+    "title": "ChatGPT Admin Web",
+    "description": "One-stop system for shared use of AI within teams and organizationswith",
+    "onboarding": "Hi, how can I help you?",
+    "logo": {
+      "index": "/logo.svg",
+      "bot": "/logo.svg",
+      "login": "/logo.svg",
+      "loading": "/logo.svg",
+      "sidebar": "/logo.svg"
+    }
+  }
+}

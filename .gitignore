@@ -22,3 +22,5 @@ apps/server/.env
 
 # Env
 apps/server/.env
+
+data/
