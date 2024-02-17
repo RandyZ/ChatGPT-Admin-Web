@@ -155,7 +155,7 @@ export class ChatController {
       userId,
       data.memoryPrompt,
     );
-
+    debugger
     /* 从 Key Pool 中挑选合适的 Key */
     // const key = await this.keyPool.select();
     return await this.chatService.newMessageStream({

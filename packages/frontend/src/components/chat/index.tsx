@@ -22,6 +22,7 @@ import SendWhiteIcon from '@/icons/send-white.svg';
 import ShoppingIcon from '@/icons/shopping.svg';
 import LoadingIcon from '@/icons/three-dots.svg';
 import CommandIcon from '@/icons/command.svg';
+import RobotIcon from '@/icons/robot.svg';
 import UserIcon from '@/icons/user.svg';
 import CopyIcon from '@/icons/copy.svg';
 import Locale from '@/locales';
@@ -29,6 +30,8 @@ import { useStore } from '@/store';
 import { SubmitKey, Theme } from '@/store/shared';
 import styles from '@/styles/module/home.module.scss';
 import clsx from 'clsx';
+
+import { ChatAction, ChatActions } from './components';
 import {
   copyToClipboard,
   downloadAs,
@@ -358,7 +361,7 @@ export default function Chat() {
       </div>
 
       <div className={styles['chat-input-panel']}>
-        <div className={styles['chat-actionbar']}>
+        {/* <div className={styles['chat-actionbar']}>
           <div className={styles['chat-actionbar-item']}>
             <div className={styles['icon']}>
               <CommandIcon />
@@ -367,7 +370,24 @@ export default function Chat() {
               {Locale.Chat.ActionBar.Command}
             </div>
           </div>
-        </div>
+          <div className={styles['chat-actionbar-item']}>
+            <div className={styles['icon']}>
+              <RobotIcon />
+            </div>
+            <div className={styles['text']}>
+              {Locale.Chat.ActionBar.Module}
+            </div>
+          </div>
+        </div> */}
+        <ChatActions
+          showPromptModal={() => console.info('showPromptModal')}
+          scrollToBottom={ () => console.info('scrollToBottom') }
+          hitBottom={false}
+          showPromptHints={() => {
+            console.info('showPromptHints');
+            inputRef.current?.focus();
+          }}
+        />
         <div className={styles['chat-input-panel-inner']}>
           <textarea
             ref={inputRef}

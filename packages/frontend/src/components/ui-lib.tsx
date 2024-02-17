@@ -33,16 +33,41 @@ export function Card(props: { children: JSX.Element[]; className?: string }) {
   );
 }
 
-export function ListItem(props: { children: JSX.Element | JSX.Element[] }) {
-  /*if (props.children.length > 2) {
-    throw Error('Only Support Two Children');
-  }*/
-
-  return <div className={styles['list-item']}>{props.children}</div>;
+export function ListItem(props: Readonly<{ 
+  title?: string;
+  subTitle?: string;
+  children?: JSX.Element | JSX.Element[];
+  icon?: JSX.Element;
+  className?: string;
+  onClick?: () => void;
+}>) {
+  return (
+    <div
+      className={styles["list-item"] + ` ${props.className || ""}`}
+      onClick={props.onClick}
+    >
+      <div className={styles["list-header"]}>
+        {props.icon && <div className={styles["list-icon"]}>{props.icon}</div>}
+        <div className={styles["list-item-title"]}>
+          {props.title && <div>{props.title}</div>}
+          {props.subTitle && (
+            <div className={styles["list-item-sub-title"]}>
+              {props.subTitle}
+            </div>
+          )}
+        </div>
+      </div>
+      {props.children}
+    </div>
+  );
 }
 
-export function List(props: { children: JSX.Element | JSX.Element[] }) {
-  return <div className={styles.list}>{props.children}</div>;
+export function List(props: { children: React.ReactNode; id?: string }) {
+  return (
+    <div className={styles.list} id={props.id}>
+      {props.children}
+    </div>
+  );
 }
 
 export function Loading() {
@@ -175,6 +200,55 @@ export function ReturnButton(props: { onClick: () => void }) {
           bordered
           title={Locale.Settings.Actions.Close}
         />
+      </div>
+    </div>
+  );
+}
+
+export function Selector<T>(props: Readonly<{
+  items: Array<{
+    title: string;
+    subTitle?: string;
+    value: T;
+  }>;
+  defaultSelectedValue?: T;
+  onSelection?: (selection: T[]) => void;
+  onClose?: () => void;
+  multiple?: boolean;
+}>) {
+  return (
+    <div className={styles["selector"]} onClick={() => props.onClose?.()}>
+      <div className={styles["selector-content"]}>
+        <List>
+          {props.items.map((item, i) => {
+            const selected = props.defaultSelectedValue === item.value;
+            return (
+              <ListItem
+                className={styles["selector-item"]}
+                key={i}
+                title={item.title}
+                subTitle={item.subTitle}
+                onClick={() => {
+                  props.onSelection?.([item.value]);
+                  props.onClose?.();
+                }}
+              >
+                {selected ? (
+                  <div
+                    style={{
+                      height: 10,
+                      width: 10,
+                      backgroundColor: "var(--primary)",
+                      borderRadius: 10,
+                    }}
+                  ></div>
+                ) : (
+                  <></>
+                )}
+              </ListItem>
+            );
+          })}
+        </List>
       </div>
     </div>
   );

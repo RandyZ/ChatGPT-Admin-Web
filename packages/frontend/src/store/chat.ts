@@ -88,6 +88,7 @@ export const createChatStore: StateCreator<StoreType, [], [], ChatSlice> = (
   removeSession(sid: string) {},
 
   async requestChat(content) {
+    debugger
     const {
       currentChatSessionId,
       currentChatSession,

@@ -75,6 +75,7 @@ const cn = {
     Send: '发送',
     ActionBar: {
       Command: '命令',
+      Module: '模型',
     },
   },
   OrderHistory: {

@@ -17,6 +17,7 @@ import { ExtendedPrismaConfigService } from '@/processors/database/prisma.servic
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { LlmController } from './modules/llm/llm.controller';
 
 @Module({
   imports: [
@@ -48,7 +49,7 @@ import { AppService } from './app.service';
     DashboardModule,
     ProductModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, LlmController],
   providers: [
     AppService,
     {

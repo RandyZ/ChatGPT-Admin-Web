@@ -79,6 +79,7 @@ const en: LocaleType = {
     Send: 'Send',
     ActionBar: {
       Command: 'Command',
+      Module: 'GPT Module',
     },
   },
   OrderHistory: {

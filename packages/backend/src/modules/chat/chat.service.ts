@@ -187,13 +187,14 @@ export class ChatService {
   }: {
     input: string;
     model: OpenAI.Chat.ChatCompletionCreateParams['model'];
-    histories?: OpenAI.Chat.CreateChatCompletionRequestMessage[];
+    histories?: OpenAI.Chat.ChatCompletionMessageParam[];
     stream?: boolean;
   }) {
     const openai = new OpenAI({
       baseURL: this.openaiConfig.baseUrl,
       apiKey: this.openaiConfig.keys[0],
     });
+    console.info('Randy~~~~111')
     return openai.chat.completions.create({
       model,
       messages: [
@@ -213,12 +214,13 @@ export class ChatService {
   }: {
     input: string;
     model: OpenAI.Chat.ChatCompletionCreateParams['model'];
-    histories?: OpenAI.Chat.CreateChatCompletionRequestMessage[];
+    histories?: OpenAI.Chat.ChatCompletionMessageParam[];
   }) {
     const openai = new OpenAI({
       baseURL: this.openaiConfig.baseUrl,
       apiKey: this.openaiConfig.keys[0],
     });
+    debugger
     return openai.chat.completions.create({
       model,
       messages: [
@@ -275,6 +277,7 @@ ${message}
     // key: string;
     topic?: string;
   }) {
+    debugger
     const { name: model } = await this.prisma.client.model.findUniqueOrThrow({
       where: { id: modelId },
     });
